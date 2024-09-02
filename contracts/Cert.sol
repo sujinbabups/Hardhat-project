@@ -5,6 +5,7 @@ contract Cert {
     
   address admin;
   
+  event Issued(string indexed course,uint256 id,string grade);
   constructor() {
     admin = msg.sender;    
   }
@@ -30,5 +31,6 @@ contract Cert {
       string memory _grade,
       string memory _date) public onlyAdmin {
           Certificates[_id] = Certificate(_name, _course, _grade, _date);
+          emit Issued(_course, _id, _grade);
       }
 }
